@@ -1,6 +1,6 @@
 project Sudoku is
 
-   for Main use ("affichages_tests.adb", "run_all_tests.adb");
+   for Main use ("run_all_tests.adb");
 
 end Sudoku;
 
