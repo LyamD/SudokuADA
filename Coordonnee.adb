@@ -10,10 +10,7 @@ package body Coordonnee is
       return Type_Coordonnee
    is
    begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "construireCoordonnees unimplemented");
-      raise Program_Error with "Unimplemented function construireCoordonnees";
-      return construireCoordonnees (ligne => ligne, colonne => colonne);
+
    end construireCoordonnees;
 
    ------------------
@@ -21,11 +18,10 @@ package body Coordonnee is
    ------------------
 
    function obtenirLigne (c : Type_Coordonnee) return Integer is
+      lig : Integer; -- Vakeur a retourner
    begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "obtenirLigne unimplemented");
-      raise Program_Error with "Unimplemented function obtenirLigne";
-      return obtenirLigne (c => c);
+      lig := c.ligne;
+      return lig;
    end obtenirLigne;
 
    --------------------
@@ -33,11 +29,10 @@ package body Coordonnee is
    --------------------
 
    function obtenirColonne (c : Type_Coordonnee) return Integer is
+      col : Integer; -- Valeur a retourner
    begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "obtenirColonne unimplemented");
-      raise Program_Error with "Unimplemented function obtenirColonne";
-      return obtenirColonne (c => c);
+      col := c.colonne;
+      return col;
    end obtenirColonne;
 
    ------------------
@@ -46,10 +41,7 @@ package body Coordonnee is
 
    function obtenirCarre (c : Type_Coordonnee) return Integer is
    begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "obtenirCarre unimplemented");
-      raise Program_Error with "Unimplemented function obtenirCarre";
-      return obtenirCarre (c => c);
+
    end obtenirCarre;
 
    ----------------------------
