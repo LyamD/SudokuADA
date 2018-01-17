@@ -35,6 +35,27 @@ package body resolutions is
    -------------------------------
 
    function obtenirSolutionsPossibles
+        (g : in Type_Grille;
+         c : in Type_Coordonnee)
+         return Type_Ensemble
+      is
+         i : Integer; -- Indice tableau
+         e : Type_Ensemble; -- Ensemble des valeurs possibles
+         possible : Boolean; -- Solution possible
+      begin
+         -- Exceptions
+         if not caseVide(g,c) then
+            raise CASE_NON_VIDE;
+         end if;
+         -- Body
+         for i in 1..9 loop
+            possible := estChiffreValable(g,i,c);
+            if possible then
+               e(i) := TRUE;
+            end if;
+         end loop;
+         return e;
+      end obtenirSolutionsPossibles;
 
    ------------------------------------------
    -- rechercherSolutionUniqueDansEnsemble --
