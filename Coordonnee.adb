@@ -1,3 +1,5 @@
+with ada.Integer_Text_IO, ada.Text_IO;
+use ada.Integer_Text_IO, ada.Text_IO;
 package body Coordonnee is
 
    ---------------------------
@@ -9,8 +11,11 @@ package body Coordonnee is
       colonne : Integer)
       return Type_Coordonnee
    is
+      c : Type_Coordonnee; -- Valeur à retourner
    begin
-
+      c.ligne := ligne;
+      c.colonne := colonne;
+      return c;
    end construireCoordonnees;
 
    ------------------
@@ -42,28 +47,25 @@ package body Coordonnee is
    function obtenirCarre (c : Type_Coordonnee) return Integer is
       nbCarre : Integer;
    begin
-      case c is
-      when c.ligne = 1 and c.colonne = 1 =>
+      if c.ligne <= 3 and c.ligne > 0 and c.colonne <= 3 and c.colonne > 0 then
          nbCarre := 1;
-      when c.ligne = 1 and c.colonne = 4 =>
+      elsif c.ligne <= 3 and c.ligne > 0 and c.colonne <= 6 and c.colonne > 3 then
          nbCarre := 2;
-      when c.ligne = 1 and c.colonne = 7 =>
+      elsif c.ligne <= 3 and c.ligne > 0 and c.colonne <= 9 and c.colonne > 6 then
          nbCarre := 3;
-      when c.ligne = 4 and c.colonne = 1 =>
+      elsif c.ligne <= 6 and c.ligne > 3 and c.colonne <= 3 and c.colonne > 0 then
          nbCarre := 4;
-      when c.ligne = 4 and c.colonne = 4 =>
+      elsif c.ligne <= 6 and c.ligne > 3 and c.colonne <= 6 and c.colonne > 3 then
          nbCarre := 5;
-      when c.ligne = 4 and c.colonne = 7 =>
+      elsif c.ligne <= 6 and c.ligne > 3 and c.colonne <= 9 and c.colonne > 6 then
          nbCarre := 6;
-      when c.ligne = 7 and c.colonne = 1 =>
+      elsif c.ligne <= 9 and c.ligne > 6 and c.colonne <= 3 and c.colonne > 0 then
          nbCarre := 7;
-      when c.ligne = 7 and c.colonne = 4 =>
+      elsif c.ligne <= 9 and c.ligne > 6 and c.colonne <= 6 and c.colonne > 3 then
          nbCarre := 8;
-      when c.ligne = 7 and c.colonne = 7 =>
+      elsif c.ligne <= 9 and c.ligne > 6 and c.colonne <= 9 and c.colonne > 6 then
          nbCarre := 9;
-      when others =>
-         nbCarre := 0;
-      end case;
+      end if;
       return nbCarre;
    end obtenirCarre;
 
@@ -73,30 +75,11 @@ package body Coordonnee is
 
    function obtenirCoordonneeCarre
      (numCarre : Integer)
-      return Type_Coordonnee
+         return Type_Coordonnee
    is
       Coord : Type_Coordonnee;
    begin
-      case numCarre is
-      when 1 =>
-         Coord.ligne := 1; Coord.colonne := 1;
-      when 2 =>
-         Coord.ligne := 1; Coord.colonne := 4;
-      when 3 =>
-         Coord.ligne := 1; Coord.colonne := 7;
-      when 4 =>
-         Coord.ligne := 4; Coord.colonne := 1;
-      when 5 =>
-         Coord.ligne := 4; Coord.colonne := 4;
-      when 6 =>
-         Coord.ligne := 4; Coord.colonne := 7;
-      when 7 =>
-         Coord.ligne := 7; Coord.colonne := 1;
-      when 8 =>
-         Coord.ligne := 7; Coord.colonne := 4;
-      when 9 =>
-         Coord.ligne := 7; Coord.colonne := 7;
-      end case;
+
       return Coord;
    end obtenirCoordonneeCarre;
 
