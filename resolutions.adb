@@ -35,16 +35,6 @@ package body resolutions is
    -------------------------------
 
    function obtenirSolutionsPossibles
-     (g : in Type_Grille;
-      c : in Type_Coordonnee)
-      return Type_Ensemble
-   is
-   begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "obtenirSolutionsPossibles unimplemented");
-      raise Program_Error with "Unimplemented function obtenirSolutionsPossibles";
-      return obtenirSolutionsPossibles (g => g, c => c);
-   end obtenirSolutionsPossibles;
 
    ------------------------------------------
    -- rechercherSolutionUniqueDansEnsemble --
