@@ -10,11 +10,24 @@ package body resolutions is
       c :    Type_Coordonnee)
       return Boolean
    is
+      esb_Ligne : Type_Ensemble;
+      esb_Colonne : Type_Ensemble;
+      esb_Carre : Type_Ensemble;
+      valable : Boolean;
    begin
-      if not caseVide(c) then
-         raise CASE_NON_VIDE
-
-      return estChiffreValable (g => g, v => v, c => c);
+      --Exception
+      if not caseVide(g,c) then
+         raise CASE_NON_VIDE;
+      end if;
+      --Début code
+      --Vérification Ligne
+         esb_Ligne := obtenirChiffresDUneLigne( g , obtenirLigne(c) );
+         esb_Colonne := obtenirChiffresDUneColonne( g , obtenirColonne(c) );
+         esb_Carre := obtenirChiffresDUnCarre( g , obtenirCarre(c) );
+         valable := appartientChiffre( esb_Carre , v);
+         valable := appartientChiffre( esb_Colonne , v);
+         valable := appartientChiffre( esb_Ligne , v);
+      return not valable;
    end estChiffreValable;
 
    -------------------------------
@@ -40,12 +53,21 @@ package body resolutions is
    function rechercherSolutionUniqueDansEnsemble
      (resultats : in Type_Ensemble)
       return Integer
-   is
+      is
+         indice : Integer;
    begin
-      --  Generated stub: replace with real body!
-      pragma Compile_Time_Warning (Standard.True, "rechercherSolutionUniqueDansEnsemble unimplemented");
-      raise Program_Error with "Unimplemented function rechercherSolutionUniqueDansEnsemble";
-      return rechercherSolutionUniqueDansEnsemble (resultats => resultats);
+         if nombreChiffres(resultats) > 1 then
+            raise PLUS_DE_UN_CHIFFRE;
+         else if ENSEMBLE_VIDE(resultats) then
+               raise ENSEMBLE_VIDE;
+            end if;
+         end if;
+         for i in 1..9 loop
+            if appartientChiffre(resultats,i) then
+               indice := i;
+            end if;
+         end loop;
+         return indice;
    end rechercherSolutionUniqueDansEnsemble;
 
    --------------------
