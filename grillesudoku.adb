@@ -71,10 +71,9 @@ package body grilleSudoku is
       v : in     Integer)
    is
    begin
-      if caseVide(g,c) then
+      if not caseVide(g,c) then
          raise FIXER_CHIFFRE_NON_NUL;
       end if;
-
       g(obtenirLigne(c),obtenirColonne(c)) := v;
    end fixerChiffre;
 
@@ -110,10 +109,14 @@ package body grilleSudoku is
       return Type_Ensemble
    is
       ligne : Type_Ensemble;
+      c : Type_Coordonnee;
    begin
       ligne := construireEnsemble;
       for i in 1 .. 9 loop
-         ajouterChiffre(ligne,g(i,numLigne));
+         c := construireCoordonnees(i,numLigne);
+         if not caseVide(g, c) then
+            ajouterChiffre(ligne, obtenirChiffre(g,c));
+         end if;
       end loop;
       return ligne;
    end obtenirChiffresDUneLigne;
@@ -128,10 +131,14 @@ package body grilleSudoku is
       return Type_Ensemble
    is
       colonne : Type_Ensemble;
+      c : Type_Coordonnee;
    begin
       colonne := construireEnsemble;
       for i in 1..9 loop
-         ajouterChiffre(colonne,g(numColonne,i));
+         c := construireCoordonnees(numColonne, i);
+         if not caseVide(g, c) then
+            ajouterChiffre(colonne, obtenirChiffre(g,c));
+         end if;
       end loop;
       return colonne;
    end obtenirChiffresDUneColonne;
@@ -147,12 +154,19 @@ package body grilleSudoku is
    is
       carre : Type_Ensemble;
       c : Type_Coordonnee;
+      li : Integer;
+      co : Integer;
    begin
       carre := construireEnsemble;
       c := obtenirCoordonneeCarre(numCarre);
-      for i in obtenirColonne(c)..obtenirColonne(c)+2 loop
-         for j in obtenirLigne(c)..obtenirLigne(c)+2 loop
-            ajouterChiffre(carre,g(i,j));
+      li := obtenirLigne(c);
+      co := obtenirColonne(c);
+      for i in 1 .. 3 loop
+         for j in 1 .. 3 loop
+            c := construireCoordonnees(i+li-1,j+co-1);
+            if not caseVide(g, c) then
+               ajouterChiffre(carre,obtenirChiffre(g,c));
+            end if;
          end loop;
       end loop;
       return carre;
