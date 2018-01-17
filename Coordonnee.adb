@@ -75,12 +75,40 @@ package body Coordonnee is
 
    function obtenirCoordonneeCarre
      (numCarre : Integer)
-         return Type_Coordonnee
+      return Type_Coordonnee
    is
-      Coord : Type_Coordonnee;
+      c : Type_Coordonnee;
    begin
+      if numCarre = 1 then
+         c.ligne := 1;
+         c.colonne := 1;
+      elsif numCarre = 2 then
+         c.ligne := 1;
+         c.colonne := 4;
+      elsif numCarre = 3 then
+         c.ligne := 1;
+         c.colonne := 7;
+      elsif numCarre = 4 then
+         c.ligne := 4;
+         c.colonne := 1;
+      elsif numCarre = 5 then
+         c.ligne := 4;
+         c.colonne := 4;
+      elsif numCarre = 6 then
+         c.ligne := 4;
+         c.colonne := 7;
+      elsif numCarre = 7 then
+         c.ligne := 7;
+         c.colonne := 1;
+      elsif numCarre = 8 then
+         c.ligne := 7;
+         c.colonne := 4;
+      elsif numCarre = 9 then
+         c.ligne := 7;
+         c.colonne := 7;
+      end if;
 
-      return Coord;
+      return c;
    end obtenirCoordonneeCarre;
 
 end Coordonnee;
